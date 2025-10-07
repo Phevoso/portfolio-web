@@ -128,10 +128,17 @@ document.querySelectorAll('.section').forEach(section => {
     observer.observe(section);
 });
 
-// Add active state to nav on scroll
+// Add active state to nav on scroll and fade scroll indicator
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-link');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+
+    // Fade out scroll indicator on scroll
+    if (scrollIndicator) {
+        const scrollProgress = Math.min(window.scrollY / 300, 1);
+        scrollIndicator.style.opacity = 1 - scrollProgress;
+    }
 
     let current = '';
 
@@ -152,6 +159,11 @@ window.addEventListener('scroll', () => {
 });
 
 // Collapsible installation cards
+// Initialize all items as collapsed
+document.querySelectorAll('.installation-content').forEach(content => {
+    content.style.maxHeight = '0';
+});
+
 document.querySelectorAll('.installation-toggle').forEach(button => {
     button.addEventListener('click', () => {
         const item = button.closest('.installation-item');
