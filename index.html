@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phevos Rinis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cursor-dot"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-sections">
+            <a href="#projects" class="nav-link" data-section="01">Work</a>
+            <a href="#work" class="nav-link" data-section="02">Experience</a>
+            <a href="#stack" class="nav-link" data-section="03">Stack</a>
+            <a href="#art" class="nav-link" data-section="04">Art</a>
+        </div>
+        <div class="nav-contact">
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-title">
+                    <h1>
+                        <span class="line">PHEVOS</span>
+                        <span class="line">RINIS</span>
+                    </h1>
+                </div>
+                <div class="hero-profile">
+                    <div class="profile-image-wrapper">
+                        <img src="img/profile.jpeg" alt="Phevos Rinis" class="profile-img">
+                    </div>
+                    <div class="profile-info">
+                        <p class="profile-title">Audio Software Engineer</p>
+                        <p class="profile-specialties">DSP / Spatial Audio / Real-time Systems</p>
+                    </div>
+                </div>
+            </div>
+            <div class="fourier-container">
+                <canvas id="fourierCanvas" class="fourier-canvas"></canvas>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects section">
+            <div class="section-number">01</div>
+            <div class="section-content">
+                <h2 class="section-title">Featured Work</h2>
+
+                <div class="projects-grid">
+                    <div class="project-card-large eve-project">
+                        <div class="project-visual">
+                            <img src="img/eve-logo.png" alt="EVE">
+                            <div class="project-overlay">
+                                <span class="project-type">Game Audio</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">EVE Online - Spatial Audio</h3>
+                            <p class="project-desc">Implemented spatial audio capabilities for EVE Online</p>
+                            <p class="project-tech">3D Audio / Wwise / Game Integration / Real-time Processing</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card-large carbon-project">
+                        <div class="project-visual">
+                            <img src="img/carbon-engine-logo.png" alt="Spatial Audio">
+                            <div class="project-overlay">
+                                <span class="project-type">Open Source</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Spatial Audio Clustering</h3>
+                            <p class="project-desc">Developed dynamic 3D audio object grouping system for CPU optimization in game engines</p>
+                            <p class="project-tech">C++ / Wwise / Ambisonics / HRTF</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card-large meta-project">
+                        <div class="project-visual">
+                            <img src="img/logo-instagram-gradient.png" alt="Meta">
+                            <div class="project-overlay">
+                                <span class="project-type">Production</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Voice Enhancement</h3>
+                            <p class="project-desc">Engineered DSP algorithms for Facebook & Instagram Reels, deployed to millions of users</p>
+                            <p class="project-tech">Real-time DSP / Voice Repair / Audio Enhancement</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card-large era-project">
+                        <div class="project-visual">
+                            <img src="img/era-bundle-logo.png" alt="ERA Bundle">
+                            <div class="project-overlay">
+                                <span class="project-type">Product</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">ERA Bundle</h3>
+                            <p class="project-desc">Developed audio repair plugins for content creators, including Voice Changer & Deepener</p>
+                            <p class="project-tech">JUCE / VST / Audio Unit / Real-time Processing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="work section">
+            <div class="section-number">02</div>
+            <div class="section-content">
+                <h2 class="section-title">Experience</h2>
+
+                <div class="timeline">
+                    <svg class="timeline-line" preserveAspectRatio="none">
+                        <line class="timeline-path" x1="0" y1="0" x2="0" y2="100%" stroke="currentColor" stroke-width="1"/>
+                        <circle class="pulse-dot pulse-1" cx="0" cy="10%" r="3" fill="currentColor"/>
+                        <circle class="pulse-dot pulse-2" cx="0" cy="40%" r="3" fill="currentColor"/>
+                        <circle class="pulse-dot pulse-3" cx="0" cy="70%" r="3" fill="currentColor"/>
+                    </svg>
+
+                    <div class="timeline-items">
+                        <div class="timeline-entry" data-year="2024">
+                            <div class="timeline-node"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h3 class="timeline-company">CCP Games</h3>
+                                    <span class="timeline-period">2024—Now</span>
+                                </div>
+                                <p class="timeline-role">Audio Software Engineer — Carbon Engine</p>
+                                <p class="timeline-location">Reykjavík, Iceland</p>
+                                <ul class="timeline-highlights">
+                                    <li>Spatial audio clustering plugin / Open source</li>
+                                    <li>750MB RAM reduction / EVE Online & Frontier</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-entry" data-year="2022">
+                            <div class="timeline-node"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h3 class="timeline-company">Meta</h3>
+                                    <span class="timeline-period">2022—2023</span>
+                                </div>
+                                <p class="timeline-role">Software Engineer — Audio & Video Infrastructure</p>
+                                <p class="timeline-location">Athens, Greece</p>
+                                <ul class="timeline-highlights">
+                                    <li>Voice enhancement algorithms / Facebook & Instagram Reels</li>
+                                    <li>Autotune integration / Horizon VR</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-entry" data-year="2020">
+                            <div class="timeline-node"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h3 class="timeline-company">Accusonus</h3>
+                                    <span class="timeline-period">2020—2022</span>
+                                </div>
+                                <p class="timeline-role">Software Engineer</p>
+                                <p class="timeline-location">Patras, Greece</p>
+                                <ul class="timeline-highlights">
+                                    <li>Voice Changer plugin / ERA Bundle audio repair</li>
+                                    <li>R&D for Voice Deepener plugin</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section id="stack" class="stack section">
+            <div class="section-number">03</div>
+            <div class="section-content">
+                <h2 class="section-title">Tech Stack</h2>
+
+                <div class="stack-categories">
+                    <div class="stack-category">
+                        <h4 class="stack-category-title">Languages</h4>
+                        <div class="stack-items">
+                            <div class="stack-item"><img src="img/stack/cplusplus.svg" alt="C++"><span>C++</span></div>
+                            <div class="stack-item"><img src="img/stack/python.svg" alt="Python"><span>Python</span></div>
+                            <div class="stack-item"><img src="img/stack/csharp.svg" alt="C#"><span>C#</span></div>
+                            <div class="stack-item"><img src="img/stack/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+                        </div>
+                    </div>
+
+                    <div class="stack-category">
+                        <h4 class="stack-category-title">Audio & Game</h4>
+                        <div class="stack-items">
+                            <div class="stack-item"><img src="img/stack/juce.svg" alt="JUCE"><span>JUCE</span></div>
+                            <div class="stack-item"><img src="img/stack/wwise.svg" alt="Wwise"><span>Wwise</span></div>
+                            <div class="stack-item"><img src="img/stack/unity.svg" alt="Unity"><span>Unity</span></div>
+                            <div class="stack-item"><img src="img/stack/unrealengine.svg" alt="Unreal"><span>Unreal</span></div>
+                        </div>
+                    </div>
+
+                    <div class="stack-category">
+                        <h4 class="stack-category-title">Tools & Platforms</h4>
+                        <div class="stack-items">
+                            <div class="stack-item"><img src="img/stack/git.svg" alt="Git"><span>Git</span></div>
+                            <div class="stack-item"><img src="img/stack/cmake.svg" alt="CMake"><span>CMake</span></div>
+                            <div class="stack-item"><img src="img/stack/pytorch.svg" alt="PyTorch"><span>PyTorch</span></div>
+                            <div class="stack-item"><img src="img/stack/raspberrypi.svg" alt="Raspberry Pi"><span>Raspberry Pi</span></div>
+                            <div class="stack-item"><img src="img/stack/arduino.svg" alt="Arduino"><span>Arduino</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Art Section -->
+        <section id="art" class="art section">
+            <div class="section-number">04</div>
+            <div class="section-content">
+                <h2 class="section-title">Art & Installations</h2>
+
+                <div class="installations-list">
+                    <!-- Music -->
+                    <div class="installation-item">
+                        <div class="installation-header">
+                            <span class="installation-title">Music</span>
+                            <button class="installation-toggle" aria-label="Expand Music">
+                                <span class="toggle-arrow">></span>
+                            </button>
+                        </div>
+                        <div class="installation-content">
+                            <p class="installation-description">Listen to my music</p>
+                            <div class="installation-links">
+                                <a href="https://phevosrinis.bandcamp.com/" class="installation-link" target="_blank">Bandcamp →</a>
+                                <a href="https://soundcloud.com/phevosrns" class="installation-link" target="_blank">SoundCloud →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Granular Memories of EVE -->
+                    <div class="installation-item">
+                        <div class="installation-header">
+                            <span class="installation-title">Granular Memories of EVE</span>
+                            <button class="installation-toggle" aria-label="Expand Granular Memories">
+                                <span class="toggle-arrow">></span>
+                            </button>
+                        </div>
+                        <div class="installation-content">
+                            <p class="installation-description">Audio-visual installation / EVE Fanfest 2025 / Harpa Concert Hall</p>
+                            <p class="installation-tech">Granular Synthesis / Procedural Algorithms / Real-time Generation</p>
+                            <a href="#" class="installation-link" target="_blank">View on GitHub →</a>
+                        </div>
+                    </div>
+
+                    <!-- Procedural Music and Internet of Things -->
+                    <div class="installation-item">
+                        <div class="installation-header">
+                            <span class="installation-title">Procedural Music and Internet of Things</span>
+                            <button class="installation-toggle" aria-label="Expand Procedural Music and IoT">
+                                <span class="toggle-arrow">></span>
+                            </button>
+                        </div>
+                        <div class="installation-content">
+                            <p class="installation-description">An IoT installation that monitors the environment and interprets environmental data into procedural music</p>
+                            <div class="installation-links">
+                                <a href="https://github.com/Phevoso/generative_music_iot/blob/main/Rinis_Phevos_Algorithmic_Music_Generation_IoT_Environmental_Parameters.pdf" class="installation-link" target="_blank">Read Thesis Paper →</a>
+                                <a href="https://github.com/Phevoso/generative_music_iot" class="installation-link" target="_blank">View on GitHub →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="waveform-footer">
+                    <svg viewBox="0 0 800 60" preserveAspectRatio="none">
+                        <path d="M0,30 Q100,10 200,30 T400,30 T600,30 T800,30"
+                              fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://linkedin.com/in/phevos-rinis" target="_blank">LinkedIn</a>
+                </div>
+                <div class="footer-mark">
+                    <div class="square-grid">
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p>© 2025 Phevos Rinis</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
