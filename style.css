@@ -128,23 +128,25 @@ button:hover ~ .cursor-dot {
 
 .hero-grid {
     width: 100%;
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: calc(var(--spacing-unit) * 8);
-    align-items: start;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 12);
     margin-bottom: calc(var(--spacing-unit) * 8);
 }
 
 .hero-title {
-    transform: translateY(calc(clamp(80px, 12vw, 180px) * -0.15 + 5px));
+    margin-bottom: calc(var(--spacing-unit) * 2);
 }
 
 .hero-title h1 {
-    font-size: clamp(80px, 12vw, 180px);
-    font-weight: 300;
-    letter-spacing: -0.03em;
-    line-height: 0.9;
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 200;
+    letter-spacing: 0.15em;
+    line-height: 1;
     margin: 0;
+    text-transform: none;
+    color: var(--grey-mid);
 }
 
 .hero-title .line {
@@ -152,17 +154,20 @@ button:hover ~ .cursor-dot {
     position: relative;
 }
 
+.title-line {
+    display: none;
+}
+
 .hero-profile {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--spacing-unit) * 2);
+    gap: 0;
     align-items: flex-start;
 }
 
 .profile-image-wrapper {
-    width: auto;
-    height: calc(clamp(80px, 12vw, 180px) * 2 * 0.9);
-    aspect-ratio: 1;
+    width: 320px;
+    height: 320px;
 }
 
 .profile-img {
@@ -175,34 +180,74 @@ button:hover ~ .cursor-dot {
     text-align: left;
     display: flex;
     flex-direction: column;
-    gap: calc(var(--spacing-unit) * 0.5);
+    gap: calc(var(--spacing-unit) * 1);
+    margin-top: calc(var(--spacing-unit) * 2);
 }
 
 .profile-title {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--black);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--grey-dark);
     margin: 0;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.05em;
 }
 
 .profile-specialties {
-    font-size: 11px;
-    color: var(--grey-mid);
+    font-size: 13px;
+    color: var(--grey-light);
     margin: 0;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
 }
 
 .fourier-container {
-    width: 100%;
-    max-width: 800px;
-    grid-column: 1 / -1;
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 .fourier-canvas {
     width: 100%;
-    height: 140px;
+    height: 200px;
     display: block;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: calc(var(--spacing-unit) * 8);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1);
+    transition: opacity 0.3s ease;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: var(--grey-light);
+}
+
+.scroll-dot {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid var(--grey-mid);
+    animation: scroll-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(8px);
+        opacity: 1;
+    }
 }
 
 /* ============================================
@@ -660,12 +705,26 @@ button:hover ~ .cursor-dot {
     margin-top: calc(var(--spacing-unit) * 10);
     width: 100%;
     max-width: 800px;
+    overflow: hidden;
 }
 
 .waveform-footer svg {
     width: 100%;
     height: 60px;
     color: var(--black);
+}
+
+.waveform-footer svg path {
+    animation: wave-flow 15s ease-in-out infinite;
+}
+
+@keyframes wave-flow {
+    0%, 100% {
+        d: path("M0,30 Q100,10 200,30 T400,30 T600,30 T800,30");
+    }
+    50% {
+        d: path("M0,30 Q100,50 200,30 T400,30 T600,30 T800,30");
+    }
 }
 
 /* ============================================
@@ -719,13 +778,13 @@ button:hover ~ .cursor-dot {
     color: var(--black);
     display: inline-block;
     transform: rotate(90deg);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     animation: pulse-fade 2s ease-in-out infinite;
 }
 
 @keyframes pulse-fade {
     0%, 100% {
-        opacity: 0.4;
+        opacity: 0.3;
     }
     50% {
         opacity: 1;
@@ -733,6 +792,8 @@ button:hover ~ .cursor-dot {
 }
 
 .installation-item.expanded .toggle-arrow {
+    animation: none;
+    opacity: 1;
     transform: rotate(-90deg);
 }
 
@@ -740,7 +801,7 @@ button:hover ~ .cursor-dot {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease;
-    padding: 0 0 calc(var(--spacing-unit) * 3) 0;
+    padding: 0;
 }
 
 .installation-item.expanded .installation-content {
@@ -965,17 +1026,27 @@ button:hover ~ .cursor-dot {
     }
 
     .hero-title h1 {
-        font-size: clamp(48px, 15vw, 80px);
+        font-size: clamp(16px, 4vw, 24px);
     }
 
     .profile-image-wrapper {
-        height: calc(clamp(48px, 15vw, 80px) * 2 * 0.9);
+        width: 240px;
+        height: 240px;
     }
 
     .hero-grid {
-        gap: calc(var(--spacing-unit) * 4);
-        grid-template-columns: 1fr;
-        justify-content: center;
+        flex-direction: column;
+        gap: calc(var(--spacing-unit) * 6);
+        align-items: center;
+    }
+
+    .fourier-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .fourier-canvas {
+        height: 120px;
     }
 
     .hero-profile {
