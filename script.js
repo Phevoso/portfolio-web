@@ -33,10 +33,46 @@ if (canvas) {
         { freq: 13, amp: 4, phase: Math.PI / 8 }
     ];
 
-    function drawComplexWaveform() {
+    let slowStart = null;
+    let slowDuration = 0;
+    let baseSpeed = 0.02;
+    let baseIncrement = 1;
+
+    function beginSlowdown() {
+        slowStart = performance.now();
+        slowDuration = Math.random() * 2000 + 3000; // 3-5 seconds
+    }
+
+    function updateTime(now) {
+        let currentIncrement = baseIncrement;
+        let currentSpeed = baseSpeed;
+
+        if (slowStart) {
+            const elapsed = now - slowStart;
+            if (elapsed <= slowDuration) {
+                const progress = elapsed / slowDuration;
+                const eased = progress < 0.5
+                    ? (progress * progress * 2)
+                    : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+                const slowdownFactor = 0.35 + 0.65 * (1 - eased);
+                currentIncrement *= slowdownFactor;
+                currentSpeed *= slowdownFactor;
+            } else {
+                slowStart = null;
+                slowDuration = 0;
+            }
+        } else if (Math.random() < 0.003) { // roughly once ~every 5s
+            beginSlowdown();
+        }
+
+        return { currentIncrement, currentSpeed };
+    }
+
+    function drawComplexWaveform(now) {
         const width = canvas.width;
         const height = canvas.height;
         const centerY = height / 2;
+        const { currentIncrement, currentSpeed } = updateTime(now);
 
         // Clear with fade effect for trail
         ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
@@ -49,7 +85,7 @@ if (canvas) {
             ctx.lineWidth = 0.5;
 
             for (let x = 0; x < width; x += 2) {
-                const t = (x / width) * Math.PI * 4 + time * 0.02;
+                const t = (x / width) * Math.PI * 4 + time * currentSpeed;
                 const y = centerY + Math.sin(harmonic.freq * t + harmonic.phase + time * 0.05 * harmonic.freq) * harmonic.amp;
 
                 if (x === 0) {
@@ -67,7 +103,7 @@ if (canvas) {
         ctx.lineWidth = 1.5;
 
         for (let x = 0; x < width; x += 1) {
-            const t = (x / width) * Math.PI * 4 + time * 0.02;
+            const t = (x / width) * Math.PI * 4 + time * currentSpeed;
             let y = centerY;
 
             // Sum all harmonics (Fourier synthesis)
@@ -87,11 +123,12 @@ if (canvas) {
         }
         ctx.stroke();
 
-        time += 1;
+        time += currentIncrement;
         animationFrame = requestAnimationFrame(drawComplexWaveform);
     }
 
-    drawComplexWaveform();
+    const initialTimestamp = performance.now();
+    drawComplexWaveform(initialTimestamp);
 }
 
 // Smooth scroll for navigation
