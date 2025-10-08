@@ -97,13 +97,43 @@ button:hover ~ .cursor-dot {
     color: var(--black);
 }
 
-.nav-contact a {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: var(--black);
-    text-decoration: none;
-    border-bottom: 1px solid var(--black);
-    padding-bottom: 2px;
+.nav-social {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 2.5);
+}
+
+.nav-icon {
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.nav-icon:hover,
+.nav-icon:focus {
+    transform: translateY(-2px);
+}
+
+.nav-icon:focus-visible {
+    outline: 1px solid var(--black);
+    outline-offset: 4px;
+}
+
+.nav-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.nav-icon:hover img,
+.nav-icon:focus img {
+    opacity: 1;
+    filter: brightness(1.05);
 }
 
 /* ============================================
@@ -137,12 +167,13 @@ button:hover ~ .cursor-dot {
 
 .hero-title {
     margin-bottom: calc(var(--spacing-unit) * 2);
+    width: 320px;
 }
 
 .hero-title h1 {
-    font-size: clamp(24px, 3vw, 40px);
+    font-size: clamp(28px, 4vw, 48px);
     font-weight: 200;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     line-height: 1;
     margin: 0;
     text-transform: none;
@@ -542,10 +573,16 @@ button:hover ~ .cursor-dot {
     flex-direction: column;
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 .project-card-large:hover {
     border-color: var(--black);
+}
+
+.project-card-large:focus-visible {
+    outline: 1px solid var(--black);
+    outline-offset: -1px;
 }
 
 .project-visual {
@@ -655,14 +692,28 @@ button:hover ~ .cursor-dot {
     border-bottom: 1px solid transparent;
     padding-bottom: 2px;
     transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.project-cta:hover,
-.project-cta:focus {
+.project-card-large:hover .project-cta,
+.project-card-large:focus .project-cta {
     color: var(--black);
     border-bottom-color: var(--black);
     transform: translateX(3px);
+}
+
+.project-cta::after {
+    content: '→';
+    font-size: 12px;
+    letter-spacing: 0;
+    transition: transform 0.3s ease;
+}
+
+.project-card-large:hover .project-cta::after,
+.project-card-large:focus .project-cta::after {
+    transform: translateX(2px);
 }
 
 /* ============================================
@@ -738,7 +789,9 @@ button:hover ~ .cursor-dot {
 }
 
 .waveform-footer svg path {
-    animation: wave-flow 15s ease-in-out infinite;
+    animation: wave-flow 12s ease-in-out infinite, wave-move 4s linear infinite;
+    stroke-dasharray: 320 480;
+    stroke-dashoffset: 0;
 }
 
 @keyframes wave-flow {
@@ -747,6 +800,12 @@ button:hover ~ .cursor-dot {
     }
     50% {
         d: path("M0,30 Q100,50 200,30 T400,30 T600,30 T800,30");
+    }
+}
+
+@keyframes wave-move {
+    to {
+        stroke-dashoffset: -800;
     }
 }
 
@@ -877,8 +936,8 @@ button:hover ~ .cursor-dot {
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: center;
     align-items: center;
     gap: calc(var(--spacing-unit) * 4);
 }
@@ -943,9 +1002,9 @@ button:hover ~ .cursor-dot {
     }
 
     .hero-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         gap: calc(var(--spacing-unit) * 6);
-        justify-content: center;
+        align-items: center;
     }
 
     .hero-profile {
@@ -953,6 +1012,11 @@ button:hover ~ .cursor-dot {
     }
 
     .profile-info {
+        text-align: center;
+    }
+
+    .hero-title {
+        width: 320px;
         text-align: center;
     }
 
@@ -999,12 +1063,26 @@ button:hover ~ .cursor-dot {
         font-size: 10px;
     }
 
+    .nav-social {
+        gap: calc(var(--spacing-unit) * 1.5);
+    }
+
+    .nav-icon {
+        width: 22px;
+        height: 22px;
+    }
+
     .container {
         padding-top: calc(var(--spacing-unit) * 12);
     }
 
+    .hero-title {
+        width: 240px;
+        text-align: center;
+    }
+
     .hero-title h1 {
-        font-size: clamp(16px, 4vw, 24px);
+        font-size: clamp(22px, 8vw, 32px);
     }
 
     .profile-image-wrapper {
