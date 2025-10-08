@@ -35,8 +35,8 @@ if (canvas) {
 
     let slowStart = null;
     let slowDuration = 0;
-    let baseSpeed = 0.02;
-    let baseIncrement = 1;
+    let baseSpeed = 0.01;
+    let baseIncrement = 0.5;
 
     function beginSlowdown() {
         slowStart = performance.now();
