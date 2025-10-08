@@ -824,8 +824,8 @@ button:hover ~ .cursor-dot {
 
 .installation-links {
     display: flex;
-    flex-direction: column;
-    gap: calc(var(--spacing-unit) * 1);
+    flex-direction: row;
+    gap: calc(var(--spacing-unit) * 3);
 }
 
 .installation-link {
