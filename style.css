@@ -747,11 +747,7 @@ button:hover ~ .cursor-dot {
 }
 
 .installation-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: calc(var(--spacing-unit) * 3) 0;
-    cursor: pointer;
+    padding: calc(var(--spacing-unit) * 3) 0 calc(var(--spacing-unit) * 1);
 }
 
 .installation-title {
@@ -761,51 +757,10 @@ button:hover ~ .cursor-dot {
     color: var(--black);
 }
 
-.installation-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: calc(var(--spacing-unit) * 1);
-    transition: transform 0.3s ease;
-}
-
-.installation-item:hover .installation-toggle {
-    transform: scale(1.2);
-}
-
-.toggle-arrow {
-    font-size: 20px;
-    color: var(--black);
-    display: inline-block;
-    transform: rotate(90deg);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    animation: pulse-fade 2s ease-in-out infinite;
-}
-
-@keyframes pulse-fade {
-    0%, 100% {
-        opacity: 0.3;
-    }
-    50% {
-        opacity: 1;
-    }
-}
-
-.installation-item.expanded .toggle-arrow {
-    animation: none;
-    opacity: 1;
-    transform: rotate(-90deg);
-}
-
 .installation-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    padding: 0;
-}
-
-.installation-item.expanded .installation-content {
-    padding: 0 0 calc(var(--spacing-unit) * 4) 0;
+    padding: 0 0 calc(var(--spacing-unit) * 4);
+    max-height: none !important;
+    overflow: visible;
 }
 
 .installation-description {

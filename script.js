@@ -158,25 +158,11 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Collapsible installation cards
-// Initialize all items as collapsed
-document.querySelectorAll('.installation-content').forEach(content => {
-    content.style.maxHeight = '0';
+// Ensure installation sections remain expanded
+document.querySelectorAll('.installation-item').forEach(item => {
+    item.classList.remove('expanded');
 });
 
-document.querySelectorAll('.installation-toggle').forEach(button => {
-    button.addEventListener('click', () => {
-        const item = button.closest('.installation-item');
-        const content = item.querySelector('.installation-content');
-
-        const isExpanded = item.classList.contains('expanded');
-
-        if (isExpanded) {
-            item.classList.remove('expanded');
-            content.style.maxHeight = '0';
-        } else {
-            item.classList.add('expanded');
-            content.style.maxHeight = content.scrollHeight + 'px';
-        }
-    });
+document.querySelectorAll('.installation-content').forEach(content => {
+    content.style.removeProperty('max-height');
 });
