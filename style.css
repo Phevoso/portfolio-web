@@ -608,6 +608,7 @@ button:hover ~ .cursor-dot {
     position: relative;
     width: 100%;
     aspect-ratio: 16/9;
+    min-height: clamp(140px, 20vw, 240px);
     background: var(--white);
     display: flex;
     align-items: center;
@@ -617,8 +618,10 @@ button:hover ~ .cursor-dot {
 }
 
 .project-visual img {
-    width: 70%;
-    height: 70%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
     transition: filter 0.3s ease, transform 0.3s ease;
 }
