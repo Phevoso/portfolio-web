@@ -540,6 +540,8 @@ button:hover ~ .cursor-dot {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    text-decoration: none;
+    color: inherit;
 }
 
 .project-card-large:hover {
@@ -621,6 +623,7 @@ button:hover ~ .cursor-dot {
     gap: calc(var(--spacing-unit) * 1.5);
     flex: 1;
     min-height: 120px;
+    align-items: flex-start;
 }
 
 .project-title {
@@ -640,6 +643,26 @@ button:hover ~ .cursor-dot {
     font-size: 11px;
     color: var(--grey-light);
     letter-spacing: 0.05em;
+}
+
+.project-cta {
+    margin-top: auto;
+    align-self: flex-end;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-mid);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.project-cta:hover,
+.project-cta:focus {
+    color: var(--black);
+    border-bottom-color: var(--black);
+    transform: translateX(3px);
 }
 
 /* ============================================
