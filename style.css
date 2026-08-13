@@ -726,6 +726,37 @@ button:hover ~ .cursor-dot {
     transform: translateX(3px);
 }
 
+.project-cta-row {
+    margin-top: auto;
+    align-self: flex-end;
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2.5);
+}
+
+.project-cta-row .project-cta {
+    margin-top: 0;
+}
+
+a.project-cta {
+    text-decoration: none;
+}
+
+a.project-cta:hover,
+a.project-cta:focus-visible {
+    color: var(--black);
+    border-bottom-color: var(--black);
+    transform: translateX(3px);
+}
+
+a.project-cta:hover::after,
+a.project-cta:focus-visible::after {
+    transform: translateX(2px);
+}
+
+div.project-card-large {
+    cursor: default;
+}
+
 .project-cta::after {
     content: '→';
     font-size: 12px;
