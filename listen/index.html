@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Sonification — Phevos Rinis</title>
+    <link rel="stylesheet" href="../style.css?v=listen-2">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="listen.css">
+</head>
+<body>
+    <div class="cursor-dot"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-sections">
+            <a href="../#projects" class="nav-link" data-section="01">Work</a>
+            <a href="../#work" class="nav-link" data-section="02">Experience</a>
+            <a href="../#stack" class="nav-link" data-section="03">Stack</a>
+            <a href="../#art" class="nav-link" data-section="04">Art & Installations</a>        </div>
+        <div class="nav-social">
+            <button class="nav-sound" type="button" data-toggle aria-pressed="false" aria-label="Play the live sonification" title="Play the live sonification">
+                <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z"/></svg>
+                <svg class="icon-bars" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3" width="2.5" height="10"/><rect x="6.75" y="3" width="2.5" height="10"/><rect x="11.5" y="3" width="2.5" height="10"/></svg>
+                <svg class="icon-stop" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="3.5" width="9" height="9"/></svg>
+            </button>
+            <span class="nav-divider" aria-hidden="true"></span>
+            <a class="nav-icon" href="https://linkedin.com/in/phevos-rinis" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <img src="../img/icons/linkedin.svg" alt="LinkedIn logo">
+            </a>
+            <a class="nav-icon" href="https://github.com/Phevoso" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <img src="../img/icons/github.svg" alt="GitHub logo">
+            </a>
+        </div>
+    </nav>
+
+    <main class="container iot listen">
+        <!-- Header -->
+        <header class="iot-header listen-header">
+            <h2 class="section-title">Environmental Sonification</h2>
+            <h1 class="iot-place"><span data-place>reykjavík</span> <span class="iot-clock" data-clock>--:--</span></h1>
+        </header>
+
+        <!-- Sources -->
+        <div class="listen-sources">
+            <div class="listen-tabs" role="radiogroup" aria-label="Data source" data-sources>
+                <button type="button" role="radio" aria-checked="true" data-source="weather">Weather</button>
+                <button type="button" role="radio" aria-checked="false" data-source="mars">Mars</button>
+                <button type="button" role="radio" aria-checked="false" data-source="solar">Solar wind</button>
+            </div>
+            <div class="listen-cities" data-cities>
+                <div class="listen-chips" role="radiogroup" aria-label="City" data-city-chips></div>
+                <div class="listen-search">
+                    <label class="visually-hidden" for="city-search">Search a city</label>
+                    <input id="city-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search…"
+                           role="combobox" aria-expanded="false" aria-controls="city-results" aria-autocomplete="list">
+                    <ul id="city-results" class="listen-results" role="listbox" aria-label="Cities" hidden></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Garden -->
+        <div class="listen-stage">
+            <canvas class="listen-garden" data-garden aria-hidden="true"></canvas>
+            <div class="listen-overlay">
+                <span class="listen-moment" data-moment>—</span>
+                <span class="listen-departure" data-departure-line></span>
+            </div>
+            <button class="hero-listen-play listen-stage-play" type="button" data-toggle aria-pressed="false" aria-label="Start listening">
+                <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z"/></svg>
+                <svg class="icon-stop" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="3.5" width="9" height="9"/></svg>
+            </button>
+        </div>
+
+        <div class="listen-transport">
+            <div class="listen-segment" role="radiogroup" aria-label="Replay speed" data-speeds>
+                <button type="button" role="radio" aria-checked="false" data-speed="0">Slow</button>
+                <button type="button" role="radio" aria-checked="true" data-speed="1">Medium</button>
+                <button type="button" role="radio" aria-checked="false" data-speed="2">Fast</button>
+            </div>
+            <label class="visually-hidden" for="moment-scrub">Moment</label>
+            <input id="moment-scrub" class="listen-scrub" type="range" min="0" max="1000" step="1" value="0" data-scrub>
+        </div>
+
+        <p class="visually-hidden" aria-live="polite" data-announce></p>
+
+        <!-- Source -->
+        <section class="section">
+            <div class="section-number">01</div>
+            <div class="section-content">
+                <h2 class="section-title">Source</h2>
+                <div class="listen-legend">
+                    <span><i class="listen-key listen-key-observed"></i>observed</span>
+                    <span><i class="listen-key listen-key-expected"></i>expected</span>
+                    <span><i class="listen-key listen-key-departure"></i>departure</span>
+                </div>
+                <div class="listen-timelines" data-timelines></div>
+            </div>
+        </section>
+
+        <!-- Voices -->
+        <section class="section">
+            <div class="section-number">02</div>
+            <div class="section-content">
+                <h2 class="section-title">Voices</h2>
+                <div class="listen-voices" data-voices></div>
+                <div class="listen-controls">
+                    <label class="listen-control">
+                        <span class="iot-label">Density</span>
+                        <input type="range" min="0" max="100" value="50" data-control="density">
+                    </label>
+                    <label class="listen-control">
+                        <span class="iot-label">Texture</span>
+                        <input type="range" min="0" max="100" value="50" data-control="texture">
+                    </label>
+                    <label class="listen-control">
+                        <span class="iot-label">Space</span>
+                        <input type="range" min="0" max="100" value="50" data-control="space">
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memory -->
+        <section class="section">
+            <div class="section-number">03</div>
+            <div class="section-content">
+                <h2 class="section-title">Memory</h2>
+                <div class="listen-memory" data-memory></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content iot-footer">
+                <div class="listen-footer-text">
+                    <a href="https://github.com/Phevoso/predictive-sonification" class="installation-link" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+                    <p class="listen-credits">Data: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> · <a href="https://mars.nasa.gov/msl/mission/weather/" target="_blank" rel="noopener noreferrer">NASA/JPL-Caltech/CAB</a> · <a href="https://www.swpc.noaa.gov/products/real-time-solar-wind" target="_blank" rel="noopener noreferrer">NOAA SWPC</a>. Piano: Salamander Grand Piano, Alexander Holm, <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a></p>
+                </div>
+                <div class="footer-mark">
+                    <div class="square-grid">
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script type="module" src="navigation.js"></script>
+</body>
+</html>

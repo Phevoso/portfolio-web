@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phevos Rinis</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=listen-2">
 </head>
 <body>
     <div class="cursor-dot"></div>
@@ -15,9 +15,15 @@
             <a href="#projects" class="nav-link" data-section="01">Work</a>
             <a href="#work" class="nav-link" data-section="02">Experience</a>
             <a href="#stack" class="nav-link" data-section="03">Stack</a>
-            <a href="#art" class="nav-link" data-section="04">Art & Installations</a>
-        </div>
+            <a href="#art" class="nav-link" data-section="04">Art & Installations</a>        </div>
         <div class="nav-social">
+            <a class="nav-sound-label" href="listen/" hidden></a>
+            <button class="nav-sound" type="button" aria-pressed="false" aria-label="Play live music generated from Reykjavík weather" title="Live music from Reykjavík weather">
+                <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z"/></svg>
+                <svg class="icon-bars" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3" width="2.5" height="10"/><rect x="6.75" y="3" width="2.5" height="10"/><rect x="11.5" y="3" width="2.5" height="10"/></svg>
+                <svg class="icon-stop" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="3.5" width="9" height="9"/></svg>
+            </button>
+            <span class="nav-divider" aria-hidden="true"></span>
             <a class="nav-icon" href="https://linkedin.com/in/phevos-rinis" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <img src="img/icons/linkedin.svg" alt="LinkedIn logo">
             </a>
@@ -46,8 +52,20 @@
                         <p class="profile-specialties">DSP / Spatial Audio / Real-time Systems</p>
                     </div>
                 </div>
-                <div class="fourier-container">
-                    <canvas id="fourierCanvas" class="fourier-canvas"></canvas>
+                <div class="hero-listen">
+                    <div class="hero-listen-stage">
+                        <canvas class="hero-listen-garden" data-hero-garden aria-hidden="true"></canvas>
+                        <button class="hero-listen-play" type="button" data-hero-play aria-pressed="false" aria-label="Play live music generated from Reykjavík weather">
+                            <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z"/></svg>
+                            <svg class="icon-stop" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="3.5" width="9" height="9"/></svg>
+                        </button>
+                    </div>
+                    <div class="hero-listen-meta">
+                        <span class="hero-listen-place"><span data-hero-place>reykjavík</span> <span class="hero-listen-reading" data-hero-reading></span></span>
+                        <span class="hero-listen-moment" data-hero-moment>last week of weather, as music</span>
+                        <ul class="hero-listen-voices" data-hero-voices aria-label="Instruments"></ul>
+                        <a href="listen/" class="hero-explore" data-hero-explore>Explore Sonification <span aria-hidden="true">→</span></a>
+                    </div>
                 </div>
             </div>
             <div class="scroll-indicator">
@@ -62,32 +80,35 @@
                 <h2 class="section-title">Featured Work</h2>
 
                 <div class="projects-grid">
-                    <a class="project-card-large eve-project" href="https://github.com/carbonengine/spatial-audio-clustering" target="_blank" rel="noopener noreferrer">
+                    <div class="project-card-large eve-project">
                         <div class="project-visual">
                             <img src="img/eve-logo.png" alt="EVE">
                             <div class="project-overlay">
-                                <span class="project-type">Open Source</span>
+                                <span class="project-type">Game Dev</span>
                             </div>
                         </div>
                         <div class="project-info">
-                            <h3 class="project-title">EVE Online & Eve Frontier - Spatial Audio</h3>
+                            <h3 class="project-title">EVE Online & EVE Frontier</h3>
                             <p class="project-desc">Implemented spatial audio and procedural features</p>
                             <p class="project-tech">Spatial Audio / Wwise / Procedural Audio/ Ambisonics / HRTF</p>
-                            <span class="project-cta">Spatial Audio Repo</span>
+                            <div class="project-cta-row">
+                                <a class="project-cta" href="https://www.eveonline.com/" target="_blank" rel="noopener noreferrer">EVE Online</a>
+                                <a class="project-cta" href="https://evefrontier.com/" target="_blank" rel="noopener noreferrer">EVE Frontier</a>
+                            </div>
                         </div>
-                    </a>
+                    </div>
 
                     <a class="project-card-large carbon-project" href="https://github.com/carbonengine" target="_blank" rel="noopener noreferrer">
                         <div class="project-visual">
                             <img src="img/carbon-engine-logo.png" alt="Spatial Audio">
                             <div class="project-overlay">
-                                <span class="project-type">Game Audio</span>
+                                <span class="project-type">Open Source</span>
                             </div>
                         </div>
                         <div class="project-info">
                             <h3 class="project-title">Game Engine Development</h3>
                             <p class="project-desc">Contributing to Carbon's audio and rendering components</p>
-                            <p class="project-tech">C++ / Python / Qt / Spatial Audio</p>
+                            <p class="project-tech">C++ / Python / Audio / Rendering</p>
                             <span class="project-cta">GitHub Repo</span>
                         </div>
                     </a>
@@ -103,7 +124,7 @@
                             <h3 class="project-title">Voice Enhancement</h3>
                             <p class="project-desc">Engineered DSP algorithms for Facebook & Instagram Reels</p>
                             <p class="project-tech">Real-time DSP / Voice Repair / Audio Enhancement</p>
-                            <span class="project-cta">Meta Blog 2022</span>
+                            <span class="project-cta">Meta Blog 2023</span>
                         </div>
                     </a>
 
@@ -111,7 +132,7 @@
                         <div class="project-visual">
                             <img src="img/era-bundle-logo.png" alt="ERA Bundle">
                             <div class="project-overlay">
-                                <span class="project-type">Product</span>
+                                <span class="project-type">Audio Plugins</span>
                             </div>
                         </div>
                         <div class="project-info">
@@ -265,6 +286,19 @@
 
                 <div class="installations-list">
 
+                    <!-- Predictive Sonification -->
+                    <div class="installation-item">
+                        <div class="installation-header">
+                            <span class="installation-title">Predictive Sonification</span>
+                        </div>
+                        <div class="installation-content">
+                            <div class="installation-links">
+                                <a href="listen/" class="installation-link">Explore →</a>
+                                <a href="https://github.com/Phevoso/predictive-sonification" class="installation-link" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Granular Memories of EVE -->
                     <div class="installation-item">
                         <div class="installation-header">
@@ -272,7 +306,6 @@
                         </div>
                         <div class="installation-content">
                             <p class="installation-description">Audio-visual installation / EVE Fanfest 2025 / Harpa Concert Hall</p>
-                            <a href="#" class="installation-link" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
                         </div>
                     </div>
 
@@ -328,6 +361,6 @@
         </footer>
     </main>
 
-    <script src="script.js"></script>
+    <script type="module" src="listen/navigation.js"></script>
 </body>
 </html>

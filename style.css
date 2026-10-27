@@ -14,6 +14,7 @@
     --grey-mid: #666666;
     --grey-light: #999999;
     --grey-border: #E5E5E5;
+    --shu: #C23B22;              /* vermilion: departures in the sonification, and its piano in the hero link */
     --spacing-unit: 8px;
 }
 
@@ -155,6 +156,109 @@ button:hover ~ .cursor-dot {
     filter: brightness(1.05);
 }
 
+/* Live music toggle (listen/home.js) */
+.nav-sound {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--black);
+    cursor: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-sound:hover,
+.nav-sound:focus {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.nav-sound:focus-visible {
+    outline: 1px solid var(--black);
+    outline-offset: 4px;
+}
+
+.nav-sound svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.nav-sound .icon-bars,
+.nav-sound .icon-stop,
+.nav-sound.is-playing .icon-play,
+.nav-sound.is-playing:hover .icon-bars,
+.nav-sound.is-playing:focus-visible .icon-bars {
+    display: none;
+}
+
+.nav-sound.is-playing .icon-bars,
+.nav-sound.is-playing:hover .icon-stop,
+.nav-sound.is-playing:focus-visible .icon-stop {
+    display: block;
+}
+
+.nav-sound .icon-bars rect {
+    transform-box: fill-box;
+    transform-origin: bottom;
+    animation: nav-sound-bar 1.4s ease-in-out infinite;
+}
+
+.nav-sound .icon-bars rect:nth-child(2) {
+    animation-delay: -0.45s;
+}
+
+.nav-sound .icon-bars rect:nth-child(3) {
+    animation-delay: -0.9s;
+}
+
+@keyframes nav-sound-bar {
+    0%, 100% {
+        transform: scaleY(0.3);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+.nav-sound.is-loading {
+    opacity: 0.4;
+}
+
+.nav-sound-label {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--grey-mid);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-sound-label:hover {
+    color: var(--black);
+}
+
+.nav-sound-label[hidden] {
+    display: none;
+}
+
+.nav-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--grey-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-sound .icon-bars rect {
+        animation: none;
+    }
+}
+
 /* ============================================
    Container
    ============================================ */
@@ -249,16 +353,208 @@ button:hover ~ .cursor-dot {
     letter-spacing: 0.12em;
 }
 
-.fourier-container {
+/* Sonification preview (listen/home.js): the garden, the place and the voices */
+.hero-listen {
     flex: 1;
+    min-width: 0;
+    width: 100%;                 /* a definite width, so the canvas never sizes the widget */
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 2);
 }
 
-.fourier-canvas {
+.hero-listen-stage {
+    position: relative;
+}
+
+.hero-listen-garden {
     width: 100%;
-    height: 200px;
+    height: 240px;
     display: block;
+    border-top: 1px solid var(--grey-border);
+    border-bottom: 1px solid var(--grey-border);
+}
+
+.hero-listen-play {
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: var(--black);
+    background: var(--white);
+    border: 1px solid var(--black);
+    border-radius: 50%;
+    cursor: inherit;
+    transition: background 0.3s ease, color 0.3s ease, opacity 0.6s ease;
+}
+
+.hero-listen-play svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.hero-listen-play .icon-stop,
+.hero-listen-play.is-playing .icon-play {
+    display: none;
+}
+
+.hero-listen-play.is-playing .icon-stop {
+    display: block;
+}
+
+.hero-listen-play:hover {
+    background: var(--black);
+    color: var(--white);
+}
+
+/* While playing, the button steps back so the garden is the focus */
+.hero-listen-play.is-playing {
+    opacity: 0;
+}
+
+.hero-listen-stage:hover .hero-listen-play.is-playing,
+.hero-listen-play.is-playing:focus-visible {
+    opacity: 1;
+}
+
+.hero-listen-play:focus-visible {
+    outline: 1px solid var(--black);
+    outline-offset: 4px;
+}
+
+.hero-listen-meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 3);
+}
+
+.hero-listen-place {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+}
+
+.hero-listen-reading {
+    color: var(--grey-light);
+}
+
+.hero-listen-moment {
+    font-size: 12px;
+    color: var(--grey-light);
+    text-align: right;
+}
+
+.hero-listen-voices {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 3);
+    list-style: none;
+}
+
+.hero-listen-voices li {
+    --level: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1);
+    font-size: 11px;
+    color: var(--grey-mid);
+    opacity: calc(0.45 + 0.55 * var(--level));
+    transition: opacity 0.2s linear, color 0.4s ease;
+}
+
+.hero-listen-voices li.is-resting {
+    opacity: 0.2;
+    transition: opacity 1.2s ease;
+}
+
+.hero-listen-voices li.is-on {
+    color: var(--black);
+    opacity: 1;
+    transition: none;
+}
+
+.hero-listen-voices svg {
+    width: 26px;
+    height: 14px;
+    overflow: visible;
+}
+
+.hero-listen-voices svg * {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.4;
+}
+
+.hero-listen-voices svg .is-heavy {
+    stroke-width: 3;
+}
+
+.hero-listen-voices svg .is-solid {
+    fill: currentColor;
+    stroke: none;
+}
+
+.hero-listen-voices li.is-departing svg .is-solid {
+    fill: var(--shu);
+}
+
+.hero-explore {
+    --pulse: 0;
+    grid-column: 1 / -1;
+    justify-self: start;
+    position: relative;
+    margin-top: calc(var(--spacing-unit) * 2);
+    padding-bottom: 4px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--shu) calc(var(--pulse) * 100%), var(--black));
+    text-decoration: none;
+}
+
+/* Black at rest; piano notes flush it vermilion and it fades back */
+.hero-explore::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    opacity: calc(0.35 + var(--pulse) * 0.65);
+}
+
+.hero-explore span {
+    display: inline-block;
+    margin-left: 4px;
+    letter-spacing: 0;
+    transform: translateX(calc(var(--pulse) * 4px));
+    transition: transform 0.3s ease;
+}
+
+.hero-explore:hover,
+.hero-explore:focus-visible {
+    color: var(--shu);
+}
+
+.hero-explore:hover::after,
+.hero-explore:focus-visible::after {
+    opacity: 1;
+}
+
+.hero-explore:hover span,
+.hero-explore:focus-visible span {
+    transform: translateX(6px);
 }
 
 /* Scroll Indicator */
@@ -283,9 +579,9 @@ button:hover ~ .cursor-dot {
 .scroll-dot {
     width: 0;
     height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 6px solid var(--grey-mid);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 11px solid var(--grey-mid);
     animation: scroll-pulse 1.5s ease-in-out infinite;
 }
 
@@ -719,8 +1015,8 @@ button:hover ~ .cursor-dot {
     gap: 6px;
 }
 
-.project-card-large:hover .project-cta,
-.project-card-large:focus .project-cta {
+a.project-card-large:hover .project-cta,
+a.project-card-large:focus .project-cta {
     color: var(--black);
     border-bottom-color: var(--black);
     transform: translateX(3px);
@@ -733,8 +1029,8 @@ button:hover ~ .cursor-dot {
     transition: transform 0.3s ease;
 }
 
-.project-card-large:hover .project-cta::after,
-.project-card-large:focus .project-cta::after {
+a.project-card-large:hover .project-cta::after,
+a.project-card-large:focus .project-cta::after {
     transform: translateX(2px);
 }
 
@@ -1073,12 +1369,20 @@ button:hover ~ .cursor-dot {
         display: none;
     }
 
+    /* Let the links and icons wrap together so nothing runs off narrow screens */
     .main-nav {
         padding: calc(var(--spacing-unit) * 3);
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: calc(var(--spacing-unit) * 2);
     }
 
     .nav-sections {
-        gap: calc(var(--spacing-unit) * 2);
+        display: contents;
+    }
+
+    .nav-social {
+        margin-left: auto;
     }
 
     .nav-link {
@@ -1089,9 +1393,14 @@ button:hover ~ .cursor-dot {
         gap: calc(var(--spacing-unit) * 1.5);
     }
 
-    .nav-icon {
+    .nav-icon,
+    .nav-sound {
         width: 22px;
         height: 22px;
+    }
+
+    .nav-sound-label {
+        display: none;
     }
 
     .container {
@@ -1118,13 +1427,21 @@ button:hover ~ .cursor-dot {
         align-items: center;
     }
 
-    .fourier-container {
+    .hero-listen {
         width: 100%;
         max-width: 100%;
     }
 
-    .fourier-canvas {
-        height: 120px;
+    .hero-listen-garden {
+        height: 180px;
+    }
+
+    .hero-listen-meta {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero-listen-moment {
+        text-align: left;
     }
 
     .hero-profile {
@@ -1156,4 +1473,35 @@ button:hover ~ .cursor-dot {
     .music-releases {
         grid-template-columns: 1fr;
     }
+}
+
+.project-cta-row {
+    margin-top: auto;
+    align-self: flex-end;
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2.5);
+}
+
+.project-cta-row .project-cta {
+    margin-top: 0;
+}
+
+a.project-cta {
+    text-decoration: none;
+}
+
+a.project-cta:hover,
+a.project-cta:focus-visible {
+    color: var(--black);
+    border-bottom-color: var(--black);
+    transform: translateX(3px);
+}
+
+a.project-cta:hover::after,
+a.project-cta:focus-visible::after {
+    transform: translateX(2px);
+}
+
+div.project-card-large {
+    cursor: default;
 }

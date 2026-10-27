@@ -1,0 +1,3 @@
+[submodule "lib/predictive-sonification"]
+	path = lib/predictive-sonification
+	url = https://github.com/Phevoso/predictive-sonification.git
