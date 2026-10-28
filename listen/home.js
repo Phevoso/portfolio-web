@@ -1,5 +1,5 @@
 // Front-page preview of the Listen page: the karesansui garden in the hero, playing Reykjavík's
-// weather when the visitor presses play, with the place, the moment and the five voices beside it.
+// weather when the visitor presses play, with the place, the moment and the four voices beside it.
 // The full page (./index.html) has the rest.
 
 import { engine, stateFor } from './session.js';
@@ -31,7 +31,7 @@ let state = null;
 
 
 
-// The five voices, lit as they sound
+// The four voices, lit as they sound
 const voiceItems = Object.fromEntries(VOICES.map((voice) => {
     const item = document.createElement('li');
     item.innerHTML = `<svg viewBox="0 0 44 24" aria-hidden="true">${voice.glyph}</svg><span>${voice.name}</span>`;

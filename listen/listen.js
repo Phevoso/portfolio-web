@@ -570,9 +570,6 @@ engine.addEventListener('note', ({ detail }) => {
     } else if (detail.instrument === 'bass') {
         if (!voiceRows.bass.row.classList.contains('is-resting')) voiceRows.bass.note.textContent = noteName(detail.midi);
         flashVoice('bass');
-    } else if (detail.instrument === 'clicks') {
-        if (current) voiceRows.clicks.note.textContent = formatMoment(current.source, detail.dataTime);
-        flashVoice('clicks');
     }
 });
 

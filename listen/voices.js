@@ -1,4 +1,4 @@
-// The five voices of the paper's palette, with what drives each one. Shared by the Listen page
+// The four voices of the paper's palette, with what drives each one. Shared by the Listen page
 // and the front-page preview.
 
 export function label(source, role) {
@@ -20,8 +20,5 @@ export const VOICES = [
     { key: 'noise', name: 'Weather noise', role: 'Variability and uncertainty', scale: 0.1,
         map: () => '← rain as readings vary, storm on departures, mist under uncertainty',
         glyph: [[5, 5], [13, 11], [20, 4], [27, 10], [34, 5], [40, 12]]
-            .map(([x, y]) => `<line x1="${x}" y1="${y}" x2="${x - 2}" y2="${y + 7}"/>`).join('') },
-    { key: 'clicks', name: 'Soft clicks', role: 'Events', scale: 0.02,
-        map: () => '← each reading as it lands · phrase boundaries',
-        glyph: [6, 14, 27, 33, 40].map((x) => `<line x1="${x}" y1="9" x2="${x}" y2="17"/>`).join('') }
+            .map(([x, y]) => `<line x1="${x}" y1="${y}" x2="${x - 2}" y2="${y + 7}"/>`).join('') }
 ];
