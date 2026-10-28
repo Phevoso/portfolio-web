@@ -998,21 +998,6 @@ button:hover ~ .cursor-dot {
     background: linear-gradient(135deg, rgba(225, 48, 108, 0.02) 0%, var(--white) 100%);
 }
 
-.project-overlay {
-    position: absolute;
-    top: calc(var(--spacing-unit) * 2);
-    right: calc(var(--spacing-unit) * 2);
-}
-
-.project-type {
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    background: var(--black);
-    color: var(--white);
-    padding: 4px 8px;
-}
-
 .project-info {
     padding: calc(var(--spacing-unit) * 3);
     display: flex;
