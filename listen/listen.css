@@ -4,7 +4,7 @@
 :root {
     --shu: #C23B22;              /* vermilion, for departures only */
     --shu-wash: rgba(194, 59, 34, 0.08);
-    --mars: #C1440E;             /* rust, for the Mars tab on hover */
+    --mars: #C1440E;             /* rust: the Mars tab on hover and its sand */
     --grey-wash: #EDEDED;        /* the expected band */
     --grey-faint: #CCCCCC;       /* observations after the cursor */
 }
@@ -202,6 +202,11 @@
     height: clamp(320px, 52vh, 560px);
     border-top: 1px solid var(--grey-border);
     border-bottom: 1px solid var(--grey-border);
+}
+
+/* Red dust on Mars */
+.listen-garden[data-source="mars"] {
+    --sand: var(--mars);
 }
 
 .listen-overlay {

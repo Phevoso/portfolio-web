@@ -135,6 +135,8 @@ async function selectSource(nextKind, nextCity = city) {
 
     current = state;
     garden.clear();
+    garden.canvas.dataset.source = kind;
+    garden.readColours();
     if (engine.state !== state) engine.setSource(state);
     displayObs = peekAtCursor(state);
     buildTimelines(state.source);
