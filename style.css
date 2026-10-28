@@ -259,6 +259,48 @@ button:hover ~ .cursor-dot {
     }
 }
 
+/* Light/dark switch (theme.js) */
+.nav-theme {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--black);
+    cursor: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-theme:hover,
+.nav-theme:focus {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.nav-theme:focus-visible {
+    outline: 1px solid var(--black);
+    outline-offset: 4px;
+}
+
+.nav-theme svg {
+    width: 16px;
+    height: 16px;
+}
+
+.nav-theme circle {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+}
+
+.nav-theme path {
+    fill: currentColor;
+}
+
 /* ============================================
    Container
    ============================================ */
@@ -1394,7 +1436,8 @@ a.project-card-large:focus .project-cta::after {
     }
 
     .nav-icon,
-    .nav-sound {
+    .nav-sound,
+    .nav-theme {
         width: 22px;
         height: 22px;
     }
@@ -1504,4 +1547,58 @@ a.project-cta:focus-visible::after {
 
 div.project-card-large {
     cursor: default;
+}
+
+/* ============================================
+   Dark Theme (theme.js sets data-theme on <html>)
+   ============================================ */
+:root[data-theme="dark"] {
+    --black: #EDEDED;
+    --white: #0E0E0E;
+    --grey-dark: #C8C8C8;
+    --grey-mid: #9A9A9A;
+    --grey-light: #707070;
+    --grey-border: #262626;
+    color-scheme: dark;
+}
+
+[data-theme="dark"] .main-nav {
+    background: linear-gradient(to bottom, rgba(14,14,14,1) 0%, rgba(14,14,14,0.95) 70%, rgba(14,14,14,0) 100%);
+}
+
+/* The dot inverts whatever is under it, so it keeps its light-theme colour */
+[data-theme="dark"] .cursor-dot {
+    background: #000000;
+}
+
+/* The social icons are drawn in near-black */
+[data-theme="dark"] .nav-icon img {
+    filter: invert(1);
+}
+
+[data-theme="dark"] .nav-icon:hover img,
+[data-theme="dark"] .nav-icon:focus img {
+    filter: invert(1) brightness(1.05);
+}
+
+/* So are the Carbon, EVE and ERA logos; the hover tints still apply after inverting */
+[data-theme="dark"] :is(.carbon-project, .era-project, .eve-project) .project-visual img {
+    filter: grayscale(100%) invert(1);
+}
+
+[data-theme="dark"] .carbon-project:hover .project-visual img {
+    filter: invert(1) brightness(1.1);
+}
+
+[data-theme="dark"] .eve-project:hover .project-visual img {
+    filter: invert(1) brightness(1.3) sepia(1) saturate(6) hue-rotate(30deg) contrast(1.2);
+}
+
+[data-theme="dark"] .era-project:hover .project-visual img {
+    filter: invert(1) brightness(1.2) sepia(1) saturate(5) hue-rotate(220deg);
+}
+
+/* The stack icons are black silhouettes; this also outranks .stack-item:hover img */
+[data-theme="dark"] .stack-item img {
+    filter: grayscale(100%) invert(1);
 }

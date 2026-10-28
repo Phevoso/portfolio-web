@@ -23,6 +23,7 @@ const canvas = $('[data-hero-garden]');
 const explore = $('[data-hero-explore]');
 let pulse = 0;
 const garden = new Garden(canvas);
+document.addEventListener('themechange', () => garden.readColours());
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 const toggles = [$('[data-hero-play]'), $('.nav-sound')].filter(Boolean);
 const navLabel = $('.nav-sound-label');

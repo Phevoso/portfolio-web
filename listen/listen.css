@@ -4,6 +4,13 @@
 :root {
     --shu: #C23B22;              /* vermilion, for departures only */
     --shu-wash: rgba(194, 59, 34, 0.08);
+    --grey-wash: #EDEDED;        /* the expected band */
+    --grey-faint: #CCCCCC;       /* observations after the cursor */
+}
+
+:root[data-theme="dark"] {
+    --grey-wash: #1E1E1E;
+    --grey-faint: #444444;
 }
 
 .visually-hidden {
@@ -302,7 +309,7 @@
 }
 
 .listen-key-expected {
-    background: #EDEDED;
+    background: var(--grey-wash);
     border-top: 1px dashed var(--grey-light);
 }
 

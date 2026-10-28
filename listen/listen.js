@@ -378,6 +378,9 @@ function drawTimelines() {
     const first = indexAfter(samples, start - 1);
     const style = getComputedStyle(document.documentElement);
     const shu = style.getPropertyValue('--shu').trim() || '#C23B22';
+    const ink = style.getPropertyValue('--black').trim() || '#000';
+    const wash = style.getPropertyValue('--grey-wash').trim() || '#EDEDED';
+    const faint = style.getPropertyValue('--grey-faint').trim() || '#CCC';
 
     for (const { channel, canvas, lo, hi } of timelines) {
         const { ctx, width, height } = fitCanvas(canvas);
@@ -387,7 +390,7 @@ function drawTimelines() {
         const bar = Math.max(1, width / Math.max(1, samples.length - first));
 
         // Expected band, only where the memory has already made its forecast
-        ctx.fillStyle = '#EDEDED';
+        ctx.fillStyle = wash;
         for (let i = first; i < samples.length; i++) {
             const record = memory.records.get(samples[i].time);
             const entry = record?.channels[channel.key];
@@ -397,7 +400,7 @@ function drawTimelines() {
         }
 
         // Observed: ink up to the cursor, faint after it
-        for (const [from, to, colour] of [[start, cursor, '#000'], [cursor, end, '#CCC']]) {
+        for (const [from, to, colour] of [[start, cursor, ink], [cursor, end, faint]]) {
             ctx.strokeStyle = colour;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -429,7 +432,7 @@ function drawTimelines() {
         }
 
         const cx = Math.round(x(clamp(cursor, start, end))) + 0.5;
-        ctx.fillStyle = '#000';
+        ctx.fillStyle = ink;
         ctx.fillRect(cx - 0.5, 0, 1, height);
     }
 }
@@ -539,6 +542,7 @@ function flushAnnouncement() {
 // ---------------------------------------------------------------- engine events
 
 const garden = new Garden($('[data-garden]'));
+document.addEventListener('themechange', () => garden.readColours());
 
 engine.addEventListener('observation', ({ detail: obs }) => {
     if (engine.state !== current) return;
