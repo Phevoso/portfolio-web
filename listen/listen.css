@@ -4,6 +4,7 @@
 :root {
     --shu: #C23B22;              /* vermilion, for departures only */
     --shu-wash: rgba(194, 59, 34, 0.08);
+    --mars: #C1440E;             /* rust, for the Mars tab on hover */
     --grey-wash: #EDEDED;        /* the expected band */
     --grey-faint: #CCCCCC;       /* observations after the cursor */
 }
@@ -78,6 +79,12 @@
 .listen-chips button:hover,
 .listen-segment button:hover {
     color: var(--black);
+}
+
+@media (hover: hover) {
+    .listen-tabs button[data-source="mars"]:hover {
+        color: var(--mars);
+    }
 }
 
 .listen-tabs button[aria-checked="true"],
