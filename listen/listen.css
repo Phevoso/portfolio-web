@@ -204,9 +204,10 @@
     border-bottom: 1px solid var(--grey-border);
 }
 
-/* Red dust on Mars */
+/* Red dust on Mars, stronger than the sand so the colour shows */
 .listen-garden[data-source="mars"] {
     --sand: var(--mars);
+    --sand-alpha: 3;
 }
 
 .listen-overlay {
