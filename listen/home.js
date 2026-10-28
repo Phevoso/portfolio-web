@@ -71,8 +71,11 @@ toggles.forEach((button) => {
 // try that first; otherwise the music starts on the visitor's first click, tap or key press
 // anywhere on the page. The play buttons handle their own first press, and someone who has
 // already stopped the music isn't overruled.
-const GESTURES = ['pointerdown', 'keydown', 'touchend'];
+// A finger's pointerdown doesn't count as a gesture, so on phones wait for the pointerup. A touch
+// that ends in a scroll doesn't count either; keep listening until one does.
+const GESTURES = ['pointerup', 'keydown'];
 function startOnGesture(event) {
+    if (navigator.userActivation && !navigator.userActivation.isActive) return;
     GESTURES.forEach((type) => document.removeEventListener(type, startOnGesture, true));
     if (event.target.closest?.('[data-hero-play], .nav-sound')) return;
     if (!engine.running) engine.start();
